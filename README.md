@@ -10,7 +10,11 @@ Let people know what your project can do specifically. Provide context and add a
 * Installation steps for Docker can be found at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 * To run the application as a stand-alone container outside of the swarm mode use the following command from the root of the project
 ```
-docker run --name angular-workshop --rm -d bash
+# build the Docker image
+docker build ./ angular-app:latest 
+
+# run the docker image outside of the swarm mode
+docker run --name angular-workshop --rm -d angular-app:latest 
 ```
 
 ### Node
