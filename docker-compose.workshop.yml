@@ -1,0 +1,21 @@
+---
+version: "3.8"
+
+services:
+  workshop:
+    image: angular-app:latest :latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        failure_action: rollback
+      restart_policy:
+        window: 15s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.angular.rule=Host(`workshop.localhost`)"
+        - "traefik.http.routers.angular.entrypoints=websecure"
+        - "traefik.http.services.angular.loadbalancer.server.port=4200"
+    
+    networks:
+      - proxy
