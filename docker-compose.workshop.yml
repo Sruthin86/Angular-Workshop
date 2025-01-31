@@ -3,7 +3,7 @@ version: "3.8"
 
 services:
   workshop:
-    image: angular-app:latest :latest
+    image: angular-app:latest
     deploy:
       mode: replicated
       replicas: 1
@@ -14,8 +14,12 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.angular.rule=Host(`workshop.localhost`)"
-        - "traefik.http.routers.angular.entrypoints=websecure"
-        - "traefik.http.services.angular.loadbalancer.server.port=4200"
+        - "traefik.http.routers.angular.entrypoints=web"
+        - "traefik.http.services.angular.loadbalancer.server.port=80"
     
     networks:
       - proxy
+
+networks:
+  proxy:
+    external: true
