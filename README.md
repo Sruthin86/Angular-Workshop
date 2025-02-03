@@ -36,7 +36,11 @@ docker network create --driver overlay proxy
 docker stack deploy -c docker-compose.proxy.yml web
 ```
 ### Application Stack
-* Deploy the whoami stack using
+* Build the workshop image using
+```
+docker build ./ -t angular-app:latest
+```
+* Deploy the workshop stack using
 ```
 docker stack deploy -c docker-compose.workshop.yml workshop  
 ```
